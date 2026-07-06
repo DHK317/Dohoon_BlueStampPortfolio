@@ -52,95 +52,90 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 #define S3 7
 #define sensorOut 2
 
-
 #define RED_LED 9
 #define GREEN_LED 10
 #define BLUE_LED 11
 
-
-int r, g, b;
-
+int r;
+int g;
+int b;
 
 void setup() {
- Serial.begin(9600);
+  // put your setup code here, to run once:
+  Serial.begin(9600);
 
+  pinMode(S0, OUTPUT);
+  pinMode(S1, OUTPUT);
+  pinMode(S2, OUTPUT);
+  pinMode(S3, OUTPUT);
+  pinMode(sensorOut, INPUT);
 
- pinMode(S0, OUTPUT);
- pinMode(S1, OUTPUT);
- pinMode(S2, OUTPUT);
- pinMode(S3, OUTPUT);
- pinMode(sensorOut, INPUT);
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(BLUE_LED, OUTPUT);
 
+  digitalWrite(S0, HIGH);
+  digitalWrite(S1, LOW);
 
- pinMode(RED_LED, OUTPUT);
- pinMode(GREEN_LED, OUTPUT);
- pinMode(BLUE_LED, OUTPUT);
-
-
- digitalWrite(S0, HIGH);
- digitalWrite(S1, LOW);
-
-
- allOff();
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+  digitalWrite(BLUE_LED, LOW);
 }
-
 
 void loop() {
+  // put your main code here, to run repeatedly:
 
+  // Read Red
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, LOW);
+  r = pulseIn(sensorOut, LOW);
 
- r = readColor(LOW, LOW);
- g = readColor(HIGH, HIGH);
- b = readColor(LOW, HIGH);
+  // Read Green
+  digitalWrite(S2, HIGH);
+  digitalWrite(S3, HIGH);
+  g = pulseIn(sensorOut, LOW);
 
+  // Read Blue
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, HIGH);
+  b = pulseIn(sensorOut, LOW);
 
- Serial.print("R=");
- Serial.print(r);
- Serial.print(" G=");
- Serial.print(g);
- Serial.print(" B=");
- Serial.println(b);
+  Serial.print("R=");
+  Serial.print(r);
+  Serial.print(" G=");
+  Serial.print(g);
+  Serial.print(" B=");
+  Serial.println(b);
 
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+  digitalWrite(BLUE_LED, LOW);
 
- allOff();
+  int maxVal = max(r, max(g, b));
+  int minVal = min(r, min(g, b));
+  int diff = maxVal - minVal;
 
+  if (r > 300 || g > 300 || b > 300 || diff < 25) {
+    Serial.println("UNKNOWN");
+  }
+  else if (r < g && r < b) {
+    digitalWrite(RED_LED, HIGH);
+    Serial.println("RED");
+  }
+  else if (g < r && g < b) {
+    digitalWrite(GREEN_LED, HIGH);
+    Serial.println("GREEN");
+  }
+  else if (b < r && b < g) {
+    digitalWrite(BLUE_LED, HIGH);
+    Serial.println("BLUE");
+  }
+  else {
+    Serial.println("UNKNOWN");
+  }
 
- int maxVal = max(r, max(g, b));
- int minVal = min(r, min(g, b));
- int diff = maxVal - minVal;
-
-
- if (r > 300 || g > 300 || b > 300 || diff < 25) {
-   Serial.println("UNKNOWN");
-   allOff();
- }
- else if (r < g && r < b) {
-   digitalWrite(RED_LED, HIGH);
-   Serial.println("RED");
- }
- else if (g < r && g < b) {
-   digitalWrite(GREEN_LED, HIGH);
-   Serial.println("GREEN");
- }
- else if (b < r && b < g) {
-   digitalWrite(BLUE_LED, HIGH);
-   Serial.println("BLUE");
- }
- else {
-   Serial.println("UNKNOWN");
-   allOff();
- }
-
-
- delay(200);
+  delay(200);
 }
-
-
-int readColor(bool s2, bool s3) {
- digitalWrite(S2, s2);
- digitalWrite(S3, s3);
- return pulseIn(sensorOut, LOW);
-}
-
 
 void allOff() {
  digitalWrite(RED_LED, LOW);
