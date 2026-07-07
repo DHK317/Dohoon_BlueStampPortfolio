@@ -56,9 +56,7 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 #define GREEN_LED 10
 #define BLUE_LED 11
 
-int r;
-int g;
-int b;
+int r, g, b;
 
 void setup() {
   // put your setup code here, to run once:
@@ -77,28 +75,15 @@ void setup() {
   digitalWrite(S0, HIGH);
   digitalWrite(S1, LOW);
 
-  digitalWrite(RED_LED, LOW);
-  digitalWrite(GREEN_LED, LOW);
-  digitalWrite(BLUE_LED, LOW);
+  allOff();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-  // Read Red
-  digitalWrite(S2, LOW);
-  digitalWrite(S3, LOW);
-  r = pulseIn(sensorOut, LOW);
-
-  // Read Green
-  digitalWrite(S2, HIGH);
-  digitalWrite(S3, HIGH);
-  g = pulseIn(sensorOut, LOW);
-
-  // Read Blue
-  digitalWrite(S2, LOW);
-  digitalWrite(S3, HIGH);
-  b = pulseIn(sensorOut, LOW);
+  r = readColor(LOW, LOW);
+  g = readColor(HIGH, HIGH);
+  b = readColor(LOW, HIGH);
 
   Serial.print("R=");
   Serial.print(r);
@@ -107,9 +92,7 @@ void loop() {
   Serial.print(" B=");
   Serial.println(b);
 
-  digitalWrite(RED_LED, LOW);
-  digitalWrite(GREEN_LED, LOW);
-  digitalWrite(BLUE_LED, LOW);
+  allOff();
 
   int maxVal = max(r, max(g, b));
   int minVal = min(r, min(g, b));
@@ -117,6 +100,7 @@ void loop() {
 
   if (r > 300 || g > 300 || b > 300 || diff < 25) {
     Serial.println("UNKNOWN");
+    allOff();
   }
   else if (r < g && r < b) {
     digitalWrite(RED_LED, HIGH);
@@ -132,15 +116,23 @@ void loop() {
   }
   else {
     Serial.println("UNKNOWN");
+    allOff();
   }
 
   delay(200);
 }
 
+int readColor(bool s2, bool s3) {
+  digitalWrite(S2, s2);
+  digitalWrite(S3, s3);
+  return pulseIn(sensorOut, LOW);
+}
+
 void allOff() {
- digitalWrite(RED_LED, LOW);
- digitalWrite(GREEN_LED, LOW);
- digitalWrite(BLUE_LED
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+  digitalWrite(BLUE_LED, LOW);
+}
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
