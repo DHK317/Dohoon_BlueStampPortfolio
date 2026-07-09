@@ -46,6 +46,7 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
 # Code
+```
 #define S0 4
 #define S1 5
 #define S2 6
@@ -133,7 +134,7 @@ void allOff() {
   digitalWrite(GREEN_LED, LOW);
   digitalWrite(BLUE_LED, LOW);
 }
-
+```
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
 Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
