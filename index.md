@@ -46,7 +46,7 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
 # Code
-```
+```c++
 #define S0 4
 #define S1 5
 #define S2 6
