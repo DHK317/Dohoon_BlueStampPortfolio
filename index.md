@@ -43,7 +43,8 @@ Since I reached my milestone I put together the color sensor, RGB LED, breadboar
 For my first milestone, my goal was to get the color sensor working with my Arduino Uno R4 Minima. My project is a color-copying chameleon light that detects whether an object is red, green, or blue and changes an RGB LED to match that color, just like a chameleon changing its skin. So far, I have connected the color sensor to the Arduino, written code to read the sensor's output, and tested it with different colored objects. I also used the Serial Monitor to verify that the sensor was correctly identifying the colors. One of the biggest challenges has been getting the sensor to recognize each color accurately because some colors were mixed up or detected inconsistently. I solved this by testing the sensor multiple times and adjusting the code and color thresholds. My next steps are to improve the accuracy of the color detection, connect the RGB LED so it changes to the detected color, and then build and test the complete chameleon light system.
 
 # Schematics 
-<img width="847" height="638" alt="Screenshot 2026-07-13 at 1 54 37 PM" src="https://github.com/user-attachments/assets/3fc1b629-ae97-4650-b961-b311e687faf1" />
+<img width="827" height="607" alt="Screenshot 2026-07-14 at 8 47 44 AM" src="https://github.com/user-attachments/assets/1007b35a-6006-43d7-966f-11c08a75ca72" />
+
 
 # Code
 ```c++
