@@ -180,6 +180,7 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
+<!--
 | Arduino Mega 2560 | Main microcontroller that runs the project | $49.90 |<a href="https://store-usa.arduino.cc/products/arduino-mega-2560-rev3?srsltid=AfmBOopyJSRFs9aLWJ-gadOdfoNWRNcBSrGM3HQCiS_rnRD5DFws96cc">Link</a> |
 | TCS3200 Color Sensor  | Detects the color of objects | $15.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | 1602A LCD Display (16×2) | Displays the detected color | $8.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
@@ -189,6 +190,16 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Solderless Breadboard| Holds the circuit components | $8.99| <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a>|
 | Male-to-Male Jumper Wires |Connects the components together | $6.98 | <a href="https://www.amazon.com/EDGELEC-Breadboard-Multicolored-1pin-1pin-Connector/dp/B07GD1ZCHQ/"> Link </a>|
 | USB A to USB B Cable |Programs and powers the Arduino Mega | $15.99 |<a href="https://www.amazon.com/Printer-Gold-Plated-Connector-Compatible-Keyboard/dp/B0GFDKF382/"> Link </a>|
+-->
+| Arduino Mega 2560 | Main microcontroller that runs the project | $49.90 |[Link](https://store-usa.arduino.cc/products/arduino-mega-2560-rev3?srsltid=AfmBOopyJSRFs9aLWJ-gadOdfoNWRNcBSrGM3HQCiS_rnRD5DFws96cc)|
+| TCS3200 Color Sensor  | Detects the color of objects | $15.99 | [Link](https://www.amazon.com/Teyleten-Robot-TCS230-TCS3200-Recognition/dp/B08HH8QYF8)|
+| 1602A LCD Display (16×2) | Displays the detected color | $8.99 | [Link](https://www.amazon.com/Kiro-Seeu-Characters-Compatible-Duemilanove/dp/B099K3J8GL)|
+| 10kΩ Potentiometer| Adjusts the LCD screen contrast | $6.29 |[Link](https://www.amazon.com/Potentiometer-Breadboard-Resistors-Assortment-Compatible/dp/B09G9TBY38)|
+| Common Cathode RGB LED (4-Pin) | Lights up the detected color | $5.89 |[Link](https://www.amazon.com/EDGELEC-Tri-Color-Multicolor-Diffused-Resistors/dp/B077XGF3YR)|
+| 220Ω Resistors (Pack) |Limits current for the RGB LED and LCD backlight | $5.99 |[Link](https://www.amazon.com/EDGELEC-Resistor-Tolerance-Resistance-Optional/dp/B07HDGF48W)|
+| Male-to-Male Jumper Wires |Connects the components together | $6.98 | [Link](https://www.amazon.com/EDGELEC-Breadboard-Multicolored-1pin-1pin-Connector/dp/B07GD1ZCHQ)|
+|Solderless Breaboard | Keeps all the compnents organized and connected | $8.99 | [Link](https://www.amazon.com/EL-CP-003-Breadboard-Solderless-Distribution-Connecting/dp/B01EV6LJ7G)
+|USB A to USB B Cable |Programs and powers the Arduino Mega | $15.99 |[Link](https://www.amazon.com/Printer-Gold-Plated-Connector-Compatible-Keyboard/dp/B0GFDKF382)|
 # Other Resources/Examples
 One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
 - [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
