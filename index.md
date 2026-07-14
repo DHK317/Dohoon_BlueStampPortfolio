@@ -184,11 +184,11 @@ Don't forget to place the link of where to buy each component inside the quotati
 | TCS3200 Color Sensor  | Detects the color of objects | $15.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | 1602A LCD Display (16×2) | Displays the detected color | $8.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | 10kΩ Potentiometer| Adjusts the LCD screen contrast | $6.29 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a>|
-| Common Cathode RGB LED (4-Pin) | Lights up the detected color | $5.89 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a>] |
+| Common Cathode RGB LED (4-Pin) | Lights up the detected color | $5.89 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | 220Ω Resistors (Pack) |Limits current for the RGB LED and LCD backlight | $5.99 | <a href="amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QK9ZBVZ/">Link </a>|
-| Solderless Breadboard| Holds the circuit components | $8.99|[[[ <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a>|
+| Solderless Breadboard| Holds the circuit components | $8.99| <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a>|
 | Male-to-Male Jumper Wires |Connects the components together | $6.98 | <a href="https://www.amazon.com/EDGELEC-Breadboard-Multicolored-1pin-1pin-Connector/dp/B07GD1ZCHQ/"> Link </a>|
-| USB A to USB B Cable |Programs and powers the Arduino Mega | $15.99 |<a href="(https://www.amazon.com/Printer-Gold-Plated-Connector-Compatible-Keyboard/dp/B0GFDKF382/"> Link </a>|
+| USB A to USB B Cable |Programs and powers the Arduino Mega | $15.99 |<a href="https://www.amazon.com/Printer-Gold-Plated-Connector-Compatible-Keyboard/dp/B0GFDKF382/"> Link </a>|
 # Other Resources/Examples
 One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
 - [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
