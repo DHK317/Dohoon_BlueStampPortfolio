@@ -50,129 +50,128 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 ```c++
 #include <LiquidCrystal.h>
 
-// ---------- LCD ----------
+
+// LCD
 LiquidCrystal lcd(12, 13, 8, A0, A1, A2);
 
-// ---------- Color sensor pins ----------
+
+// Color Sensor
 #define S0 4
 #define S1 5
 #define S2 6
 #define S3 7
 #define sensorOut 2
 
-// ---------- RGB LED pins ----------
+
+// RGB LED
 #define RED_LED 9
 #define GREEN_LED 10
 #define BLUE_LED 11
 
+
 int r, g, b;
 
-// ---------- Calibration table ----------
-struct ColorRef {
-  const char* name;
-  int r, g, b;
-  int ledR, ledG, ledB;
-};
-
-ColorRef colorTable[] = {
-  //   name       raw R   raw G   raw B     LED R  LED G  LED B
-  { "White",       33,     31,     27,       255,   255,   255 },
-  { "Black",      225,    218,    190,         0,     0,     0 },
-  { "Red",         50,    158,    130,       255,     0,     0 },
-  { "Green",      197,    129,     65,         0,   255,     0 },
-  { "Blue",       266,    157,    215,         0,     0,   255 },
-  { "Yellow",      26,     38,     59,       255,   255,     0 },
-  { "Orange",      38,    113,    132,       255,    90,     0 },
-  { "Purple",     180,    184,    107,       160,     0,   255 },
-  { "Pink",        57,    137,    105,       255,    50,   120 }
-};
-const int NUM_COLORS = sizeof(colorTable) / sizeof(ColorRef);
 
 void setup() {
-  Serial.begin(9600);
+ Serial.begin(9600);
 
-  pinMode(S0, OUTPUT);
-  pinMode(S1, OUTPUT);
-  pinMode(S2, OUTPUT);
-  pinMode(S3, OUTPUT);
-  pinMode(sensorOut, INPUT);
 
-  pinMode(RED_LED, OUTPUT);
-  pinMode(GREEN_LED, OUTPUT);
-  pinMode(BLUE_LED, OUTPUT);
+ lcd.begin(16, 2);
+ lcd.clear();
+ lcd.print("Color Sensor");
 
-  digitalWrite(S0, HIGH);
-  digitalWrite(S1, LOW);
 
-  lcd.begin(16, 2);
-  lcd.print("Color Sensor");
-  delay(1500);
-  lcd.clear();
+ pinMode(S0, OUTPUT);
+ pinMode(S1, OUTPUT);
+ pinMode(S2, OUTPUT);
+ pinMode(S3, OUTPUT);
+ pinMode(sensorOut, INPUT);
 
-  turnOffLED();
+
+ pinMode(RED_LED, OUTPUT);
+ pinMode(GREEN_LED, OUTPUT);
+ pinMode(BLUE_LED, OUTPUT);
+
+
+ // 20% frequency scaling
+ digitalWrite(S0, HIGH);
+ digitalWrite(S1, LOW);
+
+
+ delay(2000);
+ lcd.clear();
 }
+
 
 void loop() {
-  r = readColor(LOW, LOW);
-  g = readColor(HIGH, HIGH);
-  b = readColor(LOW, HIGH);
 
-  Serial.print("R="); Serial.print(r);
-  Serial.print(" G="); Serial.print(g);
-  Serial.print(" B="); Serial.println(b);
 
-  int matchIndex = findClosestColor(r, g, b);
-  ColorRef match = colorTable[matchIndex];
+ // Read Red
+ digitalWrite(S2, LOW);
+ digitalWrite(S3, LOW);
+ r = pulseIn(sensorOut, LOW);
 
-  lcd.setCursor(0, 0);
-  lcd.print("Detected:       ");
-  lcd.setCursor(0, 1);
-  lcd.print("                ");
-  lcd.setCursor(0, 1);
-  lcd.print(match.name);
 
-  setLED(match.ledR, match.ledG, match.ledB);
+ // Read Green
+ digitalWrite(S2, HIGH);
+ digitalWrite(S3, HIGH);
+ g = pulseIn(sensorOut, LOW);
 
-  Serial.print("Closest match: ");
-  Serial.println(match.name);
 
-  delay(300);
-}
+ // Read Blue
+ digitalWrite(S2, LOW);
+ digitalWrite(S3, HIGH);
+ b = pulseIn(sensorOut, LOW);
 
-int readColor(int s2State, int s3State) {
-  digitalWrite(S2, s2State);
-  digitalWrite(S3, s3State);
-  return pulseIn(sensorOut, LOW, 50000);
-}
 
-int findClosestColor(int lr, int lg, int lb) {
-  long bestDist = 2147483647;
-  int bestIndex = 0;
+ Serial.print("R=");
+ Serial.print(r);
+ Serial.print(" G=");
+ Serial.print(g);
+ Serial.print(" B=");
+ Serial.println(b);
 
-  for (int i = 0; i < NUM_COLORS; i++) {
-    long dr = lr - colorTable[i].r;
-    long dg = lg - colorTable[i].g;
-    long db = lb - colorTable[i].b;
-    long dist = dr * dr + dg * dg + db * db;
 
-    if (dist < bestDist) {
-      bestDist = dist;
-      bestIndex = i;
-    }
-  }
-  return bestIndex;
-}
+ lcd.setCursor(0, 0);
+ lcd.print("Color:        ");
+ lcd.setCursor(0, 1);
 
-void setLED(int redValue, int greenValue, int blueValue) {
-  analogWrite(RED_LED, redValue);
-  analogWrite(GREEN_LED, greenValue);
-  analogWrite(BLUE_LED, blueValue);
-}
 
-void turnOffLED() {
-  analogWrite(RED_LED, 0);
-  analogWrite(GREEN_LED, 0);
-  analogWrite(BLUE_LED, 0);
+ if (r < g && r < b) {
+   digitalWrite(RED_LED, HIGH);
+   digitalWrite(GREEN_LED, LOW);
+   digitalWrite(BLUE_LED, LOW);
+
+
+   lcd.print("RED           ");
+ }
+ else if (g < r && g < b) {
+   digitalWrite(RED_LED, LOW);
+   digitalWrite(GREEN_LED, HIGH);
+   digitalWrite(BLUE_LED, LOW);
+
+
+   lcd.print("GREEN         ");
+ }
+ else if (b < r && b < g) {
+   digitalWrite(RED_LED, LOW);
+   digitalWrite(GREEN_LED, LOW);
+   digitalWrite(BLUE_LED, HIGH);
+
+
+   lcd.print("BLUE          ");
+ }
+ else {
+   digitalWrite(RED_LED, LOW);
+   digitalWrite(GREEN_LED, LOW);
+   digitalWrite(BLUE_LED, LOW);
+
+
+   lcd.print("UNKNOWN       ");
+ }
+
+
+ delay(300);
 }
 
 ```
