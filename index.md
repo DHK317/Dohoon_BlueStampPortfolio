@@ -1,7 +1,6 @@
-w# Color Copying Chameleon Light
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
-
+The Color Copying Chameleon Light is an Arduino-based project that uses a color sensor to detect the color of an object and instantly changes an RGB LED to match it while displaying the detected color on an LCD screen. One of the biggest challenges was calibrating the sensor so it could accurately recognize different colors, but through testing and adjusting the code, the system became much more reliable. This project strengthened my programming, electronics, and problem-solving skills while showing me how hardware and software work together to create an interactive device.
 You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
+
 ```HTML 
 <!--- This is an HTML comment in Markdown -->
 <!--- Anything between these symbols will not render on the published site -->
