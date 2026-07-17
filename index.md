@@ -216,4 +216,3 @@ One of the best parts about Github is that you can view how other people set up 
 - [Color Sensor](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
 - [LCD Screen](https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/)
 - [RGB LED](https://projecthub.arduino.cc/semsemharaz/interfacing-rgb-led-with-arduino-b59902/)
-To watch the BSE tutorial on how to create a portfolio, click here.
