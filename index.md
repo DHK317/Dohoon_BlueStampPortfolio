@@ -13,16 +13,9 @@ The Color Copying Chameleon Light is an Arduino-based project that uses a color 
   
 # Final Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9VQuna4wJoY?si=SSX4iqRXOWXZphUK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+For my final milestone, I successfully completed my Color Copying Chameleon Light by building an enclosure that holds all of the components together in a clean and organized way. Since my previous milestone, I finished wiring the circuit, improved the color detection by calibrating the sensor with accurate RGB values, programmed the LCD to display the detected color, and assembled everything into the finished case. One of my biggest challenges at BSE was troubleshooting the hardware and code when the sensor gave incorrect readings or the components did not work together as expected. Through patience and testing, I was able to solve these problems, and seeing the finished project accurately detect colors and light up the matching LED was my biggest accomplishment. Throughout BSE, I learned about Arduino programming, electronic circuits, sensors, LCD displays, debugging, and the engineering design process. In the future, I hope to continue learning more about electronics, programming, and robotics so I can build even more advanced projects that combine hardware and software to solve real-world problems.
 
 
 
@@ -44,14 +37,9 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 # CAD
 
 Box:
-
 <img width=70% height=70% alt="Screenshot 2026-07-17 at 12 07 20 PM" src="https://github.com/user-attachments/assets/59e2912f-19dc-42e1-b4ae-706b433dbef7" />
-
 Lid:
-
 <img width=70% height=70% alt="Screenshot 2026-07-17 at 12 07 50 PM" src="https://github.com/user-attachments/assets/0c2d1541-96b5-4dbf-8f31-fccd70955807" />
-
-
 # Code
 ```c++
 #include <LiquidCrystal.h>
