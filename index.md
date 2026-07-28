@@ -35,13 +35,10 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 <img width="827" height="607" alt="Screenshot 2026-07-14 at 8 47 44 AM" src="https://github.com/user-attachments/assets/1007b35a-6006-43d7-966f-11c08a75ca72" />
 
 # CAD
-
 Box:
-
 <img width=70% height=70% alt="Screenshot 2026-07-17 at 12 07 20 PM" src="https://github.com/user-attachments/assets/59e2912f-19dc-42e1-b4ae-706b433dbef7" />
 
 Lid:
-
 <img width=70% height=70% alt="Screenshot 2026-07-17 at 12 07 50 PM" src="https://github.com/user-attachments/assets/0c2d1541-96b5-4dbf-8f31-fccd70955807" />
 
 # Code
