@@ -37,139 +37,163 @@ For my first milestone, my goal was to get the color sensor working with my Ardu
 # CAD
 Box:
 
-<img width="70%" height="70%" alt="Screenshot 2026-07-17 at 12 07 20 PM" src="https://github.com/user-attachments/assets/59e2912f-19dc-42e1-b4ae-706b433dbef7" />
+<img width="50%" height="50%" alt="Screenshot 2026-07-17 at 12 07 20 PM" src="https://github.com/user-attachments/assets/59e2912f-19dc-42e1-b4ae-706b433dbef7" />
 
 Lid:
 
-<img width="70%" height="70%" alt="Screenshot 2026-07-17 at 12 07 50 PM" src="https://github.com/user-attachments/assets/0c2d1541-96b5-4dbf-8f31-fccd70955807" />
+<img width="50%" height="50%" alt="Screenshot 2026-07-17 at 12 07 50 PM" src="https://github.com/user-attachments/assets/0c2d1541-96b5-4dbf-8f31-fccd70955807" />
 
 # Code
 ```c++
+
 #include <LiquidCrystal.h>
 
-
-// LCD
-LiquidCrystal lcd(12, 13, 8, A0, A1, A2);
-
-
-// Color Sensor
+#define OUT 2
 #define S0 4
 #define S1 5
 #define S2 6
 #define S3 7
-#define sensorOut 2
 
 
-// RGB LED
-#define RED_LED 9
-#define GREEN_LED 10
-#define BLUE_LED 11
+#define LED_R 9
+#define LED_G 10
+#define LED_B 11
 
 
-int r, g, b;
+const bool COMMON_ANODE = false;
+
+
+LiquidCrystal lcd(42, 43, 32, 33, 34, 35);
+
+
+struct ColorSig {
+ const char* name;
+ int sigR, sigG, sigB;     
+ int ledR, ledG, ledB;    
+};
+
+
+ColorSig colors[] = {
+ {"Purple", 84, 114, 69,   128, 0,   128},
+ {"Green",  95, 54,  68,   0,   255, 0  },
+ {"Red",    36, 118, 94,   255, 0,   0  },
+ {"Yellow", 21, 26,  46,   255, 255, 0  },
+ {"Blue",   126, 68, 38,   0,   0,   255},
+ {"Black",  158, 156, 137, 0,   0,   0  }
+};
+
+
+const int numColors = sizeof(colors) / sizeof(colors[0]);
+
+
+int matchColorIndex(int r, int g, int b) {
+ long bestDist = -1;
+ int bestIndex = 0;
+
+
+ for (int i = 0; i < numColors; i++) {
+   long dr = r - colors[i].sigR;
+   long dg = g - colors[i].sigG;
+   long db = b - colors[i].sigB;
+   long dist = dr * dr + dg * dg + db * db;
+
+
+   if (bestDist == -1 || dist < bestDist) {
+     bestDist = dist;
+     bestIndex = i;
+   }
+ }
+ return bestIndex;
+}
+
+
+void setLED(int r, int g, int b) {
+ if (COMMON_ANODE) {
+   r = 255 - r;
+   g = 255 - g;
+   b = 255 - b;
+ }
+ analogWrite(LED_R, r);
+ analogWrite(LED_G, g);
+ analogWrite(LED_B, b);
+}
+
+
+int readColorFrequency(bool s2, bool s3) {
+ digitalWrite(S2, s2 ? HIGH : LOW);
+ digitalWrite(S3, s3 ? HIGH : LOW);
+ delay(10);
+ return pulseIn(OUT, LOW);
+}
 
 
 void setup() {
  Serial.begin(9600);
 
 
- lcd.begin(16, 2);
- lcd.clear();
- lcd.print("Color Sensor");
-
-
  pinMode(S0, OUTPUT);
  pinMode(S1, OUTPUT);
  pinMode(S2, OUTPUT);
  pinMode(S3, OUTPUT);
- pinMode(sensorOut, INPUT);
+ pinMode(OUT, INPUT);
 
 
- pinMode(RED_LED, OUTPUT);
- pinMode(GREEN_LED, OUTPUT);
- pinMode(BLUE_LED, OUTPUT);
+ pinMode(LED_R, OUTPUT);
+ pinMode(LED_G, OUTPUT);
+ pinMode(LED_B, OUTPUT);
 
 
- // 20% frequency scaling
  digitalWrite(S0, HIGH);
  digitalWrite(S1, LOW);
 
 
- delay(2000);
+ lcd.begin(16, 2);
+ lcd.print("Color Sensor");
+ delay(1000);
  lcd.clear();
 }
 
 
 void loop() {
+ int redFreq   = readColorFrequency(LOW, LOW);
+ int greenFreq = readColorFrequency(HIGH, HIGH);
+ int blueFreq  = readColorFrequency(LOW, HIGH);
 
 
- // Read Red
- digitalWrite(S2, LOW);
- digitalWrite(S3, LOW);
- r = pulseIn(sensorOut, LOW);
+ Serial.print("R = "); Serial.print(redFreq);
+ Serial.print("   G = "); Serial.print(greenFreq);
+ Serial.print("   B = "); Serial.println(blueFreq);
 
 
- // Read Green
- digitalWrite(S2, HIGH);
- digitalWrite(S3, HIGH);
- g = pulseIn(sensorOut, LOW);
+ int idx = matchColorIndex(redFreq, greenFreq, blueFreq);
+ ColorSig detected = colors[idx];
 
 
- // Read Blue
- digitalWrite(S2, LOW);
- digitalWrite(S3, HIGH);
- b = pulseIn(sensorOut, LOW);
+ Serial.print("Detected: ");
+ Serial.println(detected.name);
 
 
- Serial.print("R=");
- Serial.print(r);
- Serial.print(" G=");
- Serial.print(g);
- Serial.print(" B=");
- Serial.println(b);
-
-
+ // Update LCD
  lcd.setCursor(0, 0);
- lcd.print("Color:        ");
- lcd.setCursor(0, 1);
+ lcd.print("Color: ");
+ lcd.print(detected.name);
+ lcd.print("        ");
+  lcd.setCursor(0, 1);
+ lcd.print("R");
+ lcd.print(redFreq);
+ lcd.print(" G");
+ lcd.print(greenFreq);
+ lcd.print(" B");
+ lcd.print(blueFreq);
+ lcd.print("     ");
 
 
- if (r < g && r < b) {
-   digitalWrite(RED_LED, HIGH);
-   digitalWrite(GREEN_LED, LOW);
-   digitalWrite(BLUE_LED, LOW);
+ setLED(detected.ledR, detected.ledG, detected.ledB);
 
 
-   lcd.print("RED           ");
- }
- else if (g < r && g < b) {
-   digitalWrite(RED_LED, LOW);
-   digitalWrite(GREEN_LED, HIGH);
-   digitalWrite(BLUE_LED, LOW);
-
-
-   lcd.print("GREEN         ");
- }
- else if (b < r && b < g) {
-   digitalWrite(RED_LED, LOW);
-   digitalWrite(GREEN_LED, LOW);
-   digitalWrite(BLUE_LED, HIGH);
-
-
-   lcd.print("BLUE          ");
- }
- else {
-   digitalWrite(RED_LED, LOW);
-   digitalWrite(GREEN_LED, LOW);
-   digitalWrite(BLUE_LED, LOW);
-
-
-   lcd.print("UNKNOWN       ");
- }
-
-
- delay(300);
+ delay(500);
 }
+
 
 ```
 
