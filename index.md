@@ -7,10 +7,10 @@ The Color Copying Chameleon Light is an Arduino-based project that uses a color 
 |:--:|:--:|:--:|:--:|
 | Dohoon K | Homestead High School | Mechanical Engineering | Incoming Freshman
 
-**Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
+<img width="449" height="316" alt="View recent photos 2" src="https://github.com/user-attachments/assets/568431fa-4c2d-4a0e-b232-9fa138d5c336" />
 
-![Headstone Image](logo.svg)
-  
+<img width="3627" height="2614" alt="IMG_0062" src="https://github.com/user-attachments/assets/681df24e-6751-4247-be44-f45a10f97f41" />
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9VQuna4wJoY?si=SSX4iqRXOWXZphUK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
