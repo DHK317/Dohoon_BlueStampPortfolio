@@ -9,7 +9,7 @@ The Color Copying Chameleon Light is an Arduino-based project that uses a color 
 
 <img width="449" height="316" alt="View recent photos 2" src="https://github.com/user-attachments/assets/568431fa-4c2d-4a0e-b232-9fa138d5c336" />
 
-<img width="3627" height="2614" alt="IMG_0062" src="https://github.com/user-attachments/assets/681df24e-6751-4247-be44-f45a10f97f41" />
+<img width="500" height="400" alt="IMG_0062" src="https://github.com/user-attachments/assets/681df24e-6751-4247-be44-f45a10f97f41" />
 
 # Final Milestone
 
